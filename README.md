@@ -1,8 +1,6 @@
 # DrGrantDFIR
 Dr. Alan Grant was a visiting paleontologist to Jurassic Park. Since we use Velociraptor for IR we need a great paleontologist to help track IR cases...enter DrGrantDFIR.
 
----
-
 ## Primary Goals
 The goal of this project is to create a solution for case management that fits the style of the Rapid7 IR team. We need to be able to track overall cases, Indicators of Compromise (IoC), Systems in scope, Accounts in scope, and a way to assign and track tasks to analysts. Each of these sections needs flexibility/customizations in the data selections. For example, we need the ability to enter in a system name, but designate the type of system it is (windows, linux, mac, server, workstation).
 
