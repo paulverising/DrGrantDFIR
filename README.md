@@ -8,11 +8,12 @@ The goal of this project is to create a solution for case management that fits t
 Features beyond core functionality that would improve the user experience is the ability to enter in narratives about the case in question and to output reports using that narrative/data into a template. It would also be nice to have some graph functionality to see how certain entities link to one another. For example, a compromised user account was used on 3 systems, and those systems and 2 different pieces of malware.
 
 ## To Do
-- [ ] build the base application
-- [ ] design the database
+- [x] build the base application
+- [x] design the database
 - [ ] build the database 
 - [ ] build cases page
 - [ ] build the systems page
 - [ ] build the accounts page
 - [ ] build the IoC's page
 - [ ] build the tasks page
+- [ ] add authentication/authorization
