@@ -10,7 +10,8 @@ Features beyond core functionality that would improve the user experience is the
 ## To Do
 - [x] build the base application
 - [x] design the database
-- [ ] build the database 
+- [ ] build the database
+- [ ] build user app
 - [ ] build cases page
 - [ ] build the systems page
 - [ ] build the accounts page
