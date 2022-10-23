@@ -18,3 +18,4 @@ Features beyond core functionality that would improve the user experience is the
 - [ ] build the IoC's page
 - [ ] build the tasks page
 - [ ] add authentication/authorization
+- [ ] make it look like internal tooling
