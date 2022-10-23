@@ -11,7 +11,7 @@ Features beyond core functionality that would improve the user experience is the
 - [x] build the base application
 - [x] design the database
 - [x] build the database
-- [ ] build user app
+- [x] build user app
 - [ ] build cases page
 - [ ] build the systems page
 - [ ] build the accounts page
