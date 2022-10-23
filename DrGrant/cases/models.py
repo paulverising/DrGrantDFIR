@@ -8,36 +8,52 @@ class Case(models.Model):
     dateCreated = models.DateTimeField(auto_now=False, auto_now_add=True)
     dateModified = models.DateTimeField(auto_now=True, auto_now_add=False)
     description = models.TextField()
-    initialAccess = models.DateTimeField(editable=True)
-    firstDetectTime = models.DateTimeField(editable=True)
+    initialAccess = models.DateTimeField(editable=True, blank=True)
+    firstDetectTime = models.DateTimeField(editable=True, blank=True)
+    incidentManager = models.ForeignKey(User, null=True, on_delete=models.PROTECT)
+    
+    def __str__(self):
+        return self.name
 
 class System_Type(models.Model):
     type = models.CharField(max_length=200)
     dateCreated = models.DateTimeField(auto_now=False, auto_now_add=True)
     dateModified = models.DateTimeField(auto_now=True, auto_now_add=False)
+    
+    def __str__(self):
+        return self.type
 
 class System(models.Model):
-    case = models.ForeignKey(Case, default=1, on_delete=models.SET_DEFAULT)
+    case = models.ForeignKey(Case, on_delete=models.PROTECT)
     name = models.CharField(max_length=200)
     dateCreated = models.DateTimeField(auto_now=False, auto_now_add=True)
     dateModified = models.DateTimeField(auto_now=True, auto_now_add=False)
     description = models.TextField()
     is_Attacker = models.BooleanField()
-    system_type = models.ForeignKey(System_Type, default=1, on_delete=models.SET_DEFAULT)
+    system_type = models.ForeignKey(System_Type, on_delete=models.PROTECT)
+    
+    def __str__(self):
+        return self.name
 
 class Account_Type(models.Model):
     type = models.CharField(max_length=200)
     dateCreated = models.DateTimeField(auto_now=False, auto_now_add=True)
     dateModified = models.DateTimeField(auto_now=True, auto_now_add=False)
     
+    def __str__(self):
+        return self.type
+    
 class Account(models.Model):
-    case = models.ForeignKey(Case, default=1, on_delete=models.SET_DEFAULT)
+    case = models.ForeignKey(Case, on_delete=models.PROTECT)
     name = models.CharField(max_length=200)
     dateCreated = models.DateTimeField(auto_now=False, auto_now_add=True)
     dateModified = models.DateTimeField(auto_now=True, auto_now_add=False)
     description = models.TextField()
     is_AttackerCreated = models.BooleanField()
-    account_type = models.ForeignKey(Account_Type, default=1, on_delete=models.SET_DEFAULT)
+    account_type = models.ForeignKey(Account_Type, on_delete=models.PROTECT)
+    
+    def __str__(self):
+        return self.name
     
 
 class Task_Status(models.Model):
@@ -45,15 +61,23 @@ class Task_Status(models.Model):
     dateCreated = models.DateTimeField(auto_now=False, auto_now_add=True)
     dateModified = models.DateTimeField(auto_now=True, auto_now_add=False)
     
+    class Meta:
+        verbose_name_plural = "Task_statuses"
+    
+    def __str__(self):
+        return self.status
+    
 class Task(models.Model):
-    case = models.ForeignKey(Case, default=1, on_delete=models.SET_DEFAULT)
+    case = models.ForeignKey(Case, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     dateCreated = models.DateTimeField(auto_now=False, auto_now_add=True)
     dateModified = models.DateTimeField(auto_now=True, auto_now_add=False)
     description = models.TextField()
-    system = models.ForeignKey(System, default=1, on_delete=models.SET_DEFAULT)
-    task_status = models.ForeignKey(Task_Status, default=1, on_delete=models.SET_DEFAULT)
-    assignee = models.ForeignKey(User, default="User Deleted", on_delete=models.SET_DEFAULT)
+    system = models.ForeignKey(System, blank=True, null=True, on_delete=models.PROTECT)
+    task_status = models.ForeignKey(Task_Status, default=1, on_delete=models.PROTECT)
+    assignee = models.ForeignKey(User, null=True, on_delete=models.PROTECT)
 
+    def __str__(self):
+        return self.name
 
 
