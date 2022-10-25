@@ -38,11 +38,11 @@ class CasesDetailView(LoginRequiredMixin, DetailView):
 
 class CasesCreateView(LoginRequiredMixin, CreateView):
     model = Case
-    fields = ['name', 'description']
+    fields = ['name', 'incidentManager', 'description']
 
 class CasesUpdateView(LoginRequiredMixin, UpdateView):
     model = Case
-    fields = ['name', 'description']
+    fields = ['name', 'incidentManager', 'description']
 
 class CasesDeleteView(LoginRequiredMixin, DeleteView):
     model = Case

@@ -11,7 +11,7 @@ class Case(models.Model):
     description = models.TextField()
     initialAccess = models.DateTimeField(editable=True, blank=True, null=True)
     firstDetectTime = models.DateTimeField(editable=True, blank=True, null=True)
-    incidentManager = models.ForeignKey(User, null=True, blank=True, on_delete=models.PROTECT)
+    incidentManager = models.ForeignKey(User, on_delete=models.PROTECT)
     
     def __str__(self):
         return self.name
