@@ -4,10 +4,10 @@
         <article class="media content-section">
             <div class="media-body">
                 <div class="article-metadata">
-                <a class="mr-2" href="#">{{ case.incidentManager }}</a>
-                <small class="text-muted">{{ case.dateCreated }}</small>
+                    IM: <a class="mr-2" href="#">{{ case.incidentManager }}</a>
+                <small class="text-muted">Created: {{ case.dateCreated }}</small>
                 </div>
-                <h2><a class="article-title" href="#">{{ case.name }}</a></h2>
+                <h2><a class="article-title" href="{% url 'cases-detail' case.id %}">{{ case.name }}</a></h2>
                 <p class="article-content">{{ case.description }}</p>
             </div>
         </article>

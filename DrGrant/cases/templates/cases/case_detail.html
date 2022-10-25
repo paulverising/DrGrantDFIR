@@ -1,0 +1,20 @@
+{% extends "cases/base.html" %}
+{% block content %}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    IM: {{ object.incidentManager }}
+                    <small class="text-muted">Created: {{ object.dateCreated }}</small>
+                    <div>
+                        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'cases-update' object.id %}">Update</a>
+                        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'cases-delete' object.id %}">Delete</a>
+                    </div>
+                </div>
+                <h2 class="article-title">{{ object.name }}</h2>
+                <p class="article-content"> Description: {{ object.description }}</p>
+                <p class="article-content">Initial Access Time: {{ object.initialAccess }}</p>
+                <p class="article-content">First Detection Time: {{ object.firstDetectTime }}</p>
+                <p class="article-content">Incident Manager: {{ object.incidentManager }}</p>
+            </div>
+        </article>
+{% endblock content %}

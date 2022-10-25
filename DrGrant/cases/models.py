@@ -2,18 +2,22 @@ from xmlrpc.client import DateTime
 from django.db import models
 from django.forms import CharField, DateTimeField
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 class Case(models.Model):
     name = models.CharField(max_length=200)
     dateCreated = models.DateTimeField(auto_now=False, auto_now_add=True)
     dateModified = models.DateTimeField(auto_now=True, auto_now_add=False)
     description = models.TextField()
-    initialAccess = models.DateTimeField(editable=True, blank=True)
-    firstDetectTime = models.DateTimeField(editable=True, blank=True)
-    incidentManager = models.ForeignKey(User, null=True, on_delete=models.PROTECT)
+    initialAccess = models.DateTimeField(editable=True, blank=True, null=True)
+    firstDetectTime = models.DateTimeField(editable=True, blank=True, null=True)
+    incidentManager = models.ForeignKey(User, null=True, blank=True, on_delete=models.PROTECT)
     
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('cases-detail', kwargs={'pk': self.pk})
 
 class System_Type(models.Model):
     type = models.CharField(max_length=200)
