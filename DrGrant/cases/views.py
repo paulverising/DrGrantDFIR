@@ -1,7 +1,8 @@
 from typing import OrderedDict
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from .models import Case
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -19,6 +20,18 @@ class CasesListView(LoginRequiredMixin, ListView):
     template_name = 'cases/cases.html'
     context_object_name = 'cases'
     ordering = ['-dateCreated']
+    paginate_by = 5
+
+class UserCasesListView(LoginRequiredMixin, ListView):
+    model = Case
+    template_name = 'cases/user_cases.html'
+    context_object_name = 'cases'
+    ordering = ['-dateCreated']
+    paginate_by = 5
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Case.objects.filter(incidentManager=user)
 
 class CasesDetailView(LoginRequiredMixin, DetailView):
     model = Case

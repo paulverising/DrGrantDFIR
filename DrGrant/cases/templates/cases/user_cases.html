@@ -1,5 +1,6 @@
 {% extends "cases/base.html" %}
 {% block content %}
+    <h1 class="mb-3">Cases for {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
     {% for case in cases %}
         <article class="media content-section">
             <div class="media-body">
@@ -33,4 +34,4 @@
         {% endif %}
 
     {% endif %}
-{% endblock content %}
+{% endblock content %}ß
