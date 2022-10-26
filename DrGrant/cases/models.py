@@ -27,6 +27,11 @@ class System_Type(models.Model):
     def __str__(self):
         return self.type
 
+class Disposition_Type(models.Model):
+    type = models.CharField(max_length=200)
+    dateCreated = models.DateTimeField(auto_now=False, auto_now_add=True)
+    dateModified = models.DateTimeField(auto_now=True, auto_now_add=False)
+
 class System(models.Model):
     case = models.ForeignKey(Case, on_delete=models.PROTECT)
     name = models.CharField(max_length=200)
@@ -34,6 +39,8 @@ class System(models.Model):
     dateModified = models.DateTimeField(auto_now=True, auto_now_add=False)
     description = models.TextField()
     is_Attacker = models.BooleanField()
+    analysis_Required = models.BooleanField(default=None, null=True)
+    disposition = models.ForeignKey(Disposition_Type, default=None, on_delete=models.PROTECT)
     system_type = models.ForeignKey(System_Type, on_delete=models.PROTECT)
     
     def __str__(self):
@@ -54,11 +61,43 @@ class Account(models.Model):
     dateModified = models.DateTimeField(auto_now=True, auto_now_add=False)
     description = models.TextField()
     is_AttackerCreated = models.BooleanField()
+    remediated = models.BooleanField(default=None, null=True, blank=True)
+    remediatedDate = models.DateTimeField(editable=True, blank=True, null=True)
     account_type = models.ForeignKey(Account_Type, on_delete=models.PROTECT)
     
     def __str__(self):
         return self.name
     
+
+class NBI(models.Model):
+    case = models.ForeignKey(Case, on_delete=models.PROTECT)
+    ipAddress = models.GenericIPAddressField()
+    domain = models.URLField()
+    dateCreated = models.DateTimeField(auto_now=False, auto_now_add=True)
+    dateModified = models.DateTimeField(auto_now=True, auto_now_add=False)
+    description = models.TextField()
+    remediated = models.BooleanField()
+    remediatedDate = models.DateTimeField(editable=True, blank=True, null=True)
+    
+    def __str__(self):
+        if self.ipAddress:
+            return self.ipAddress
+        else:
+            return self.domain
+        
+class HBI(models.Model):
+    case = models.ForeignKey(Case, on_delete=models.PROTECT)
+    fileName = models.CharField(max_length=300)
+    filePath = models.CharField(max_length=300)
+    sha256 = models.CharField(max_length=64)
+    dateCreated = models.DateTimeField(auto_now=False, auto_now_add=True)
+    dateModified = models.DateTimeField(auto_now=True, auto_now_add=False)
+    description = models.TextField()
+    sandboxLink = models.URLField()
+
+
+    def __str__(self):
+        return self.fileName
 
 class Task_Status(models.Model):
     status = models.CharField(max_length=200)
