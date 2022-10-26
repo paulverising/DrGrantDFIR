@@ -71,8 +71,8 @@ class Account(models.Model):
 
 class NBI(models.Model):
     case = models.ForeignKey(Case, on_delete=models.PROTECT)
-    ipAddress = models.GenericIPAddressField()
-    domain = models.URLField()
+    ipAddress = models.GenericIPAddressField(blank=True, null=True)
+    domain = models.URLField(blank=True, null=True)
     dateCreated = models.DateTimeField(auto_now=False, auto_now_add=True)
     dateModified = models.DateTimeField(auto_now=True, auto_now_add=False)
     description = models.TextField()
@@ -82,14 +82,16 @@ class NBI(models.Model):
     def __str__(self):
         if self.ipAddress:
             return self.ipAddress
-        else:
+        elif self.domain:
             return self.domain
+        else:
+            return "NBI"
         
 class HBI(models.Model):
     case = models.ForeignKey(Case, on_delete=models.PROTECT)
     fileName = models.CharField(max_length=300)
-    filePath = models.CharField(max_length=300)
-    sha256 = models.CharField(max_length=64)
+    filePath = models.CharField(max_length=300, blank=True, null=True)
+    sha256 = models.CharField(max_length=64, blank=True, null=True)
     dateCreated = models.DateTimeField(auto_now=False, auto_now_add=True)
     dateModified = models.DateTimeField(auto_now=True, auto_now_add=False)
     description = models.TextField()
