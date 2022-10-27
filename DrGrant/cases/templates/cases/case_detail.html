@@ -1,20 +1,73 @@
 {% extends "cases/base.html" %}
 {% block content %}
-        <article class="media content-section">
-            <div class="media-body">
-                <div class="article-metadata">
-                    IM: {{ object.incidentManager }}
-                    <small class="text-muted">Created: {{ object.dateCreated }}</small>
-                    <div>
-                        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'cases-update' object.id %}">Update</a>
-                        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'cases-delete' object.id %}">Delete</a>
-                    </div>
-                </div>
-                <h2 class="article-title">{{ object.name }}</h2>
-                <p class="article-content"> Description: {{ object.description }}</p>
-                <p class="article-content">Initial Access Time: {{ object.initialAccess }}</p>
-                <p class="article-content">First Detection Time: {{ object.firstDetectTime }}</p>
-                <p class="article-content">Incident Manager: {{ object.incidentManager }}</p>
+    
+    <div class="media-body">
+        <h2 class="article-title">{{ object.name }}</h2>
+        
+        <div class="article-metadata">
+            <h6>Incident Manager: {{ object.incidentManager }}</h6>
+            <small class="text-muted">Created: {{ object.dateCreated }}</small>
+        </div>
+    </div>    
+    <div class="container">
+            
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs nav-justified">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#casedetails">Details</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#systems">Systems</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#accounts">Accounts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#nbi">NBIs</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#hbi">HBIs</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#tasks">Tasks</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+        <div class="tab-pane container active" id="casedetails">
+            <table class="table">
+                <tbody>
+                    <tr> 
+                        <th scope="row">Description: </th>
+                        <td>{{ object.description }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Initial Access Time: </th>
+                        <td>{{ object.initialAccess }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">First Detection Time: </th>
+                        <td>{{ object.firstDetectTime }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Incident Manager: </th>
+                        <td>{{ object.incidentManager }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'cases-update' object.id %}">Update</a>
+                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'cases-delete' object.id %}">Delete</a>
             </div>
-        </article>
+        </div>
+        <div class="tab-pane container fade" id="systems">Systems</div>
+        <div class="tab-pane container fade" id="accounts">Accounts</div>
+        <div class="tab-pane container fade" id="nbi">NBIs</div>
+        <div class="tab-pane container fade" id="hbi">HBIs</div>
+        <div class="tab-pane container fade" id="tasks">Tasks</div>
+    </div>
+
+    
+    
 {% endblock content %}
