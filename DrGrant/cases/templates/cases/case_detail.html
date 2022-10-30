@@ -61,7 +61,7 @@
                 <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'cases-delete' object.id %}">Delete</a>
             </div>
         </div>
-        <div class="tab-pane container fade" id="systems">Systems</div>
+        <div class="tab-pane container fade" id="systems">System{{  Case.objects.all }}</div>
         <div class="tab-pane container fade" id="accounts">Accounts</div>
         <div class="tab-pane container fade" id="nbi">NBIs</div>
         <div class="tab-pane container fade" id="hbi">HBIs</div>

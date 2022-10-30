@@ -13,6 +13,7 @@ Features beyond core functionality that would improve the user experience is the
 - [x] build the database
 - [x] build user app
 - [x] add authentication
+- [ ] add case status
 - [ ] build cases page
 - [ ] add systems to the cases page
 - [ ] add accounts to the cases page

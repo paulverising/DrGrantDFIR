@@ -47,3 +47,4 @@ class CasesUpdateView(LoginRequiredMixin, UpdateView):
 class CasesDeleteView(LoginRequiredMixin, DeleteView):
     model = Case
     success_url = '/'
+    

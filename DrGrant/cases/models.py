@@ -31,6 +31,9 @@ class Disposition_Type(models.Model):
     type = models.CharField(max_length=200)
     dateCreated = models.DateTimeField(auto_now=False, auto_now_add=True)
     dateModified = models.DateTimeField(auto_now=True, auto_now_add=False)
+    
+    def __str__(self):
+        return self.type
 
 class System(models.Model):
     case = models.ForeignKey(Case, on_delete=models.PROTECT)
@@ -95,7 +98,7 @@ class HBI(models.Model):
     dateCreated = models.DateTimeField(auto_now=False, auto_now_add=True)
     dateModified = models.DateTimeField(auto_now=True, auto_now_add=False)
     description = models.TextField()
-    sandboxLink = models.URLField()
+    sandboxLink = models.URLField(blank=True, null=True)
 
 
     def __str__(self):
