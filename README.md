@@ -11,8 +11,9 @@ Features beyond core functionality that would improve the user experience is the
 - [x] build the base application
 - [x] design the database
 - [x] build the database
-- [x] build user app
-- [x] add authentication
+- [ ] add authentication
+- [ ] add django rest API
+- [ ] make it look like internal tooling (using react and accessing the APIs)
 - [ ] add case status
 - [ ] build cases page
 - [ ] add systems to the cases page
@@ -20,5 +21,3 @@ Features beyond core functionality that would improve the user experience is the
 - [ ] add HBI's to the cases page
 - [ ] add NBI's to the cases page
 - [ ] add Tasks to the cases page
-- [ ] add django rest API
-- [ ] make it look like internal tooling (using react and accessing the APIs)
